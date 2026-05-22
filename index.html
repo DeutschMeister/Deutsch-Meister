@@ -484,6 +484,32 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .hidden{display:none!important}
 </style>
+    <!-- Firebase setup starts here -->
+    <!-- These lines "download" the necessary Firebase tools for your page -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+      // This is YOUR app's special address and keys from Firebase Console
+      const firebaseConfig = {
+        apiKey: "AIzaSyBHpqjfNeVVXnTXJYUgNeQIkJczc2IEnsM", // <-- Your unique API key
+        authDomain: "deutsch-meister-6c327.firebaseapp.com",
+        projectId: "deutsch-meister-6c327",
+        storageBucket: "deutsch-meister-6c327.firebasestorage.app",
+        messagingSenderId: "953414166970",
+        appId: "1:953414166970:web:9482d3e4222b2f45589583",
+        measurementId: "G-XX28X8DH4R"
+      };
+
+      // This line connects your page to your Firebase project
+      const app = initializeApp(firebaseConfig);
+
+      // This line gets the "Authentication tool" ready to use
+      const auth = getAuth(app);
+
+      // We'll add more code here later to actually make accounts!
+    </script>
+    <!-- Firebase setup ends here -->
 </head>
 <body>
 
