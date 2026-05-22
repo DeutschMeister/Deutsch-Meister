@@ -5,7 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deutsch Meister</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Firebase setup starts here -->
+    <script type="module">
+      // IMPORTANT: Make sure this import line includes all three functions
+      import { initializeApp, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"; // This line was a copy-paste error, only need the one above!
+
+      // This is YOUR app's special address and keys from Firebase Console
+      const firebaseConfig = {
+        apiKey: "AIzaSyBHpqjfNeVVXnTXJYUgNeQIkJczc2IEnsM",
+        authDomain: "deutsch-meister-6c327.firebaseapp.com",
+        projectId: "deutsch-meister-6c327",
+        storageBucket: "deutsch-meister-6c327.firebasestorage.app",
+        messagingSenderId: "953414166970",
+        appId: "1:953414166970:web:9482d3e4222b2f45589583",
+        measurementId: "G-XX28X8DH4R"
+      };
+
+      // This line connects your page to your Firebase project
+      const app = initializeApp(firebaseConfig);
+
+      // This line gets the "Authentication tool" ready to use
+      const auth = getAuth(app);
+
+      // --- NEW JAVASCRIPT CODE STARTS HERE (from previous step) ---
+
+      // Get references to our HTML elements
+      const emailInput = document.getElementById('emailInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const signUpButton = document.getElementById('signUpButton');
+      const signInButton = document.getElementById('signInButton');
+      const authMessage = document.getElementById('authMessage');
+
+      // What happens when the "Sign Up" button is clicked
+      signUpButton.addEventListener('click', async () => {
+          const email = emailInput.value;
+          const password = passwordInput.value;
+
+          try {
+              const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+              authMessage.textContent = `Account created successfully for: ${userCredential.user.email}`;
+              authMessage.style.color = 'green';
+              console.log("Signed up user:", userCredential.user);
+          } catch (error) {
+              authMessage.textContent = `Error signing up: ${error.message}`;
+              authMessage.style.color = 'red';
+              console.error("Error signing up:", error);
+          }
+      });
+
+      // What happens when the "Sign In" button is clicked
+      signInButton.addEventListener('click', async () => {
+          const email = emailInput.value;
+          const password = passwordInput.value;
+
+          try {
+              const userCredential = await signInWithEmailAndPassword(auth, email, password);
+              authMessage.textContent = `Signed in successfully as: ${userCredential.user.email}`;
+              authMessage.style.color = 'green';
+              console.log("Signed in user:", userCredential.user);
+          } catch (error) {
+              authMessage.textContent = `Error signing in: ${error.message}`;
+              authMessage.style.color = 'red';
+              console.error("Error signing in:", error);
+          }
+      });
+
+      // --- NEW JAVASCRIPT CODE ENDS HERE ---
+
+    </script>
+    <!-- Firebase setup ends here -->
+
 <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  /* ... your existing styles ... */
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
